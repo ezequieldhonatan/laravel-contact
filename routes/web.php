@@ -7,9 +7,35 @@ Route::get('/', function () {
 Auth::routes
 (
     [
+
         'register'      => false, // Register
         'verified'      => true, // Verified
-    ]
-);
+        
+    ] //
 
-Route::get('/home', 'HomeController@index')->name('home');
+); // Auth routes
+
+
+/**
+ * SYSTEM
+*/
+Route::group
+(
+    [
+        'namespace'     => 'Api\v1\System\Panel'
+    ],
+    
+    function () 
+    {
+        /**
+         * DASHBOARD (MODULE 1.0)
+        */
+
+        /* OVERVIEW (MODULE 1.1)
+        ================================================== */
+        Route::get('dashboard/overview', 'Dashboard\Overview\IndexController@index')->name('dashboard.overview');
+
+
+    } // function
+
+); // Route

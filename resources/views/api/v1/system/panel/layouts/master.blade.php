@@ -123,6 +123,10 @@
     ================================================== -->
     <script src="{{ mix('assets/js/app.js') }}"></script>
 
+    <!-- FONTAWESOME
+    ================================================== -->
+    <script src="https://kit.fontawesome.com/da013edbcb.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

@@ -102,7 +102,7 @@
 
                         @auth
 
-                            <a href="{{ url('/home') }}">Home</a>
+                            <a href="{{ route('dashboard.overview') }}">Painel</a>
 
                         @else
 
