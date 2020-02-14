@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
                 /* SETTINGS
                 ================================================== */
                 UserTableSeeder::class, ## USER
+
+                /* SUPPORT (MODULE 2.1)
+                ================================================== */
+                ContactTableSeeder::class, ## CONTACT
             
             ] //
 
