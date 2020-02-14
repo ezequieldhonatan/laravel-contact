@@ -4,105 +4,101 @@
 
 <div class="container">
 
-    <div class="row">
+    <div class="row justify-content-center">
+        
+        <div class="col-sm-8 col-xs-8 col-lg-8 col-md-8">
 
-        <div class="justify-content-center">
+            <div class="card">
 
-            <div class="col-sm-8 col-xs-8 col-lg-8 col-md-8">
+                <div class="card-header">
+                    Redefinir senha    
+                </div>
 
-                <div class="card">
+                <div class="card-body">
 
-                    <div class="card-header">
-                        Redefinir senha    
-                    </div>
+                    <form method="POST" action="{{ route('password.update') }}">
 
-                    <div class="card-body">
+                        @csrf
 
-                        <form method="POST" action="{{ route('password.update') }}">
+                        <input type="hidden" name="token" value="{{ $token }}">
 
-                            @csrf
+                        <div class="form-group row">
+                            
+                            <label for="email" class="col-md-4 col-form-label text-md-right">
+                                E-mail    
+                            </label>
 
-                            <input type="hidden" name="token" value="{{ $token }}">
+                            <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6">
 
-                            <div class="form-group row">
-                                
-                                <label for="email" class="col-md-4 col-form-label text-md-right">
-                                    E-mail    
-                                </label>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
-                                <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6">
+                                @error('email')
 
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    
+                                @enderror
 
-                                    @error('email')
+                            </div> <!-- col-sm-6 col-xs-6 col-lg-6 col-md-6 -->
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        
-                                    @enderror
+                        </div> <!-- form-group row -->
 
-                                </div> <!-- col-sm-6 col-xs-6 col-lg-6 col-md-6 -->
+                        <div class="form-group row">
 
-                            </div> <!-- form-group row -->
+                            <label for="password" class="col-md-4 col-form-label text-md-right">
+                                Senha    
+                            </label>
 
-                            <div class="form-group row">
+                            <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6">
 
-                                <label for="password" class="col-md-4 col-form-label text-md-right">
-                                    Senha    
-                                </label>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6">
+                                @error('password')
 
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
 
-                                    @error('password')
+                                @enderror
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                            </div> <!-- col-sm-6 col-xs-6 col-lg-6 col-md-6 -->
 
-                                    @enderror
+                        </div> <!-- form-group row -->
 
-                                </div> <!-- col-sm-6 col-xs-6 col-lg-6 col-md-6 -->
+                        <div class="form-group row">
 
-                            </div> <!-- form-group row -->
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
+                                Confirmar senha
+                            </label>
 
-                            <div class="form-group row">
+                            <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
 
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
-                                    Confirmar senha
-                                </label>
+                        </div> <!-- form-group row -->
 
-                                <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                </div>
+                        <div class="form-group row mb-0">
 
-                            </div> <!-- form-group row -->
+                            <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 offset-md-4">
 
-                            <div class="form-group row mb-0">
+                                <button type="submit" class="btn btn-outline-primary">
+                                    Enviar
+                                </button>
 
-                                <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 offset-md-4">
+                            </div> <!-- col-sm-6 col-xs-6 col-lg-6 col-md-6 offset-md-4 -->
 
-                                    <button type="submit" class="btn btn-outline-primary">
-                                        Enviar
-                                    </button>
+                        </div> <!-- form-group row mb-0 -->
+                
+                    </form> <!-- form -->
 
-                                </div> <!-- col-sm-6 col-xs-6 col-lg-6 col-md-6 offset-md-4 -->
+                </div> <!-- card-body -->
 
-                            </div> <!-- form-group row mb-0 -->
-                    
-                        </form> <!-- form -->
+            </div> <!-- card -->
 
-                    </div> <!-- card-body -->
+        </div> <!-- col-sm-8 col-xs-8 col-lg-8 col-md-8 -->
 
-                </div> <!-- card -->
-
-            </div> <!-- col-sm-8 col-xs-8 col-lg-8 col-md-8 -->
-
-        </div> <!-- row -->
-
-    </div> <!-- justify-content-center -->
+    </div> <!-- row justify-content-center -->
 
 </div> <!-- container -->
 

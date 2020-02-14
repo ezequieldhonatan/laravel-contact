@@ -125,7 +125,7 @@
 
                     <div class="title m-b-md">
                         
-                        <h4>Laravel Contato</h4>
+                        <h1>Laravel Contato</h1>
 
                     </div>
 
