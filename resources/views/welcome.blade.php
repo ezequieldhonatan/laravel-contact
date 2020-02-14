@@ -11,7 +11,10 @@
 ================================================== -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
     <head>
+
+        <title>Laravel Contato</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Laravel Contact - Sistema de gestão de contato">
@@ -25,6 +28,10 @@
         <!-- FONTS
         ================================================== -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,600">
+
+        <!-- CSS
+        ================================================== -->
+        <link rel="stylesheet" href="{{ mix('assets/css/app.css') }}">
         
         <!-- STYLES
         ================================================== -->
@@ -99,7 +106,7 @@
 
                         @else
 
-                            <a href="{{ route('login') }}">Área do cliente</a>
+                            <a href="{{ route('login') }}">Área restrita</a>
 
 
                             @if ( Route::has('register') )
@@ -148,6 +155,10 @@
             </div> <!-- flex-center position-ref full-height -->
 
         </div> <!-- #app -->
+
+        <!-- JS
+        ================================================== -->
+        <script src="{{ mix('assets/js/app.js') }}"></script>
 
     </body>
 

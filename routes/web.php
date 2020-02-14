@@ -11,3 +11,5 @@ Auth::routes
         'verified'      => true, // Verified
     ]
 );
+
+Route::get('/home', 'HomeController@index')->name('home');
