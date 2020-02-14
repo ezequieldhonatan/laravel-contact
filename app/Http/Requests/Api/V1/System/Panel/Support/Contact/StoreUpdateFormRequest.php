@@ -32,11 +32,18 @@ class StoreUpdateFormRequest extends FormRequest
             'name'                              => 'required',
             'email'                             => 'required|email',
             'cell_phone'                        => 'required',
-            'annex'                             => 'required|mimes:pdf,doc,docx,odt,txt|size:500',
+            'annex'                             => 'required|mimes:pdf,doc,docx,odt,txt|max:500',
             'message'                           => 'required'
 
         ]; // return
 
     } // rules
+
+    public function messages()
+    {
+        return [
+            'image.max' => 'O anexo pode ter no máximo 1MB',
+        ];
+    }
 
 } // StoreUpdateFormRequest
