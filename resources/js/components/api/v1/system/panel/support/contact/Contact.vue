@@ -114,7 +114,7 @@
 
                                     <br>
 
-                                    <!-- <p>Total de registros: {{ totalContacts }}</p> -->
+                                    <p>Total de registros: {{ totalContacts }}</p>
 
                                     <!-- PAGINATION
                                     ================================================== -->
@@ -166,6 +166,12 @@ export default {
             return this.$store.state.contact.items
 
         }, // contacts
+
+        totalContacts () {
+
+            return this.$store.state.contact.items.data.total
+
+        }, // totalContacts
 
         params () {
 

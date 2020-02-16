@@ -2330,6 +2330,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.$store.state.contact.items;
     },
     // contacts
+    totalContacts: function totalContacts() {
+      return this.$store.state.contact.items.data.total;
+    },
+    // totalContacts
     params: function params() {
       return {
         page: this.contact.current_page
@@ -21735,6 +21739,12 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("br"),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Total de registros: " + _vm._s(_vm.totalContacts)
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("pagination", {
                         attrs: { pagination: _vm.contacts, offset: 10 },
