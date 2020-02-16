@@ -19,9 +19,9 @@
 
                                 <!-- CONTATO
                                 ================================================== -->
-                                <form class="form" @submit.prevent="onSubmit">
+                                <form class="form">
 
-                                    <input type="hidden" class="form-control" id="ip" v-model="formData.ip">
+                                    <input type="hidden" class="form-control" id="ip">
 
                                     <div class="row">
 
@@ -29,7 +29,7 @@
                                             
                                             <div :class="['form-group', { 'has-error': errors.name } ]">
                                                 <label for="name">Nome</label>
-                                                <input type="text" class="form-control" id="name" v-model="formData.name">
+                                                <input type="text" class="form-control" id="name">
                                                 <div v-if="errors.name">{{ errors.name[0] }}</div>
                                             </div>
 
@@ -39,7 +39,7 @@
 
                                             <div class="form-group">
                                                 <label for="email">E-mail</label>
-                                                <input type="email" class="form-control" id="email" v-model="formData.email">
+                                                <input type="email" class="form-control" id="email">
                                                 <div v-if="errors.email">{{ errors.email[0] }}</div>
                                             </div>
 
@@ -67,22 +67,8 @@
                                             
                                             <div class="form-group">
                                                 <label for="message">Mensagem</label>
-                                                <textarea class="textarea form-control" rows="5" cols="5" id="message" v-model="formData.message"></textarea>
+                                                <textarea class="textarea form-control" rows="5" cols="5" id="message"></textarea>
                                                 <div v-if="errors.message">{{ errors.message[0] }}</div>
-                                            </div>
-
-                                        </div> <!-- col-sm-12 col-xs-12 col-lg-12 col-md-12 -->
-
-                                    </div> <!-- row -->
-
-                                    <div class="row">
-
-                                        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
-                                            
-                                            <div class="form-group">
-                                                <button class="btn btn-outline-success">
-                                                    Enviar
-                                                </button>
                                             </div>
 
                                         </div> <!-- col-sm-12 col-xs-12 col-lg-12 col-md-12 -->
@@ -108,32 +94,6 @@
 
 <script>
 export default {
-
-    props: {
-
-        contact: {
-
-            require: true,
-            type: Object,
-            default: () => {
-
-                return {
-
-                    ip: '',
-                    id: '',
-                    name: '',
-                    email: '',
-                    cell_phone: '',
-                    annex: '',
-                    message: '',
-
-                } // return
-
-            }, // default
-
-        }, // contact
-        
-    }, // props
     
     data () {
 
@@ -144,22 +104,6 @@ export default {
         } // return
 
     }, // data
-
-    methods: {
-
-        onSubmit () {
-
-            this.$store.dispatch('store', this.contact)
-                        .then( () => {
-                            
-                        })
-                        .catch(error => {
-                            
-                        })
-
-        }, // submit
-
-    }, // methods
 
 } // export default
 </script>
