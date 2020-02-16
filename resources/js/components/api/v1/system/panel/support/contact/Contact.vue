@@ -1,5 +1,4 @@
 <template>
-
     <div>
 
         <div class="row">
@@ -141,7 +140,6 @@
         </div> <!-- row -->
 
     </div> <!-- -->
-    
 </template> <!-- -->
 
 <script>
