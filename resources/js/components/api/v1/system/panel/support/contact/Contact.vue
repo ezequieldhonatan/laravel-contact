@@ -69,7 +69,7 @@
 
                                         <tbody>
 
-                                            <tr v-for="(contact, index) in contacts.data" :key="index">
+                                            <tr v-for="contact in contacts.data" :key="contact.id">
 
                                                 <th scope="row">
                                                     <a href="#">
@@ -115,7 +115,16 @@
 
                                     <br>
 
-                                    <p>Total de registros: {{ totalContacts }}</p>
+                                    <!-- <p>Total de registros: {{ totalContacts }}</p> -->
+
+                                    <!-- PAGINATION
+                                    ================================================== -->
+                                    <pagination
+                                        :pagination="contacts"
+                                        :offset="10"
+                                        @paginate="contact"
+                                    >
+                                    </pagination>
 
                                 </div> <!-- table-responsive -->
 
@@ -136,37 +145,51 @@
 </template> <!-- -->
 
 <script>
-import axios from 'axios' // AXIOS
+import pagination from '../../layouts/pagination/Pagination' // PAGINATION
 
 export default {
 
+    components: {
+
+        pagination, // PAGINATION
+
+    }, // components
+
     created () {
 
-        this.$store.dispatch('contact')
+        this.contact(1)
 
     }, // created
-    
+
     computed: {
 
         contacts () {
 
-            return this.$store.state.contact.items.data
+            return this.$store.state.contact.items
 
         }, // contacts
 
-        totalContacts () {
+        params () {
 
-            return this.$store.state.contact.items.data.total
+            return {
 
-        }, // totalContacts
+                page: this.contact.current_page
 
-        contact () {
+            } // return
 
-            return this.$store.state.contact.items
+        }, // params
+
+    }, // computed
+    
+    methods: {
+
+        contact (page) {
+
+            this.$store.dispatch( 'contact', { ...this.params, page } )
 
         }, // contact
 
-    }, // computed
+    }, // methods
 
 } // export default
 </script>
