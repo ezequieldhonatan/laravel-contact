@@ -5,6 +5,19 @@ window.Vue = require('vue');
 import router from './routes/routers' // router
 import store  from './vuex/store' // store
 
+import SNotify from 'vue-snotify' // SNotify
+
+Vue.use
+(
+    SNotify,
+    {
+        toast:
+        {
+            showProgressBar: false
+        }
+    }
+) // SNotify
+
 /**
  * Global Components
  */
