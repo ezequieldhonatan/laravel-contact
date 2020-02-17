@@ -41451,17 +41451,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_frontend_layouts_master_MasterHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/frontend/layouts/master/MasterHome */ "./resources/js/components/frontend/layouts/master/MasterHome.vue");
-/* harmony import */ var _components_frontend_contact_HomeContact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/frontend/contact/HomeContact */ "./resources/js/components/frontend/contact/HomeContact.vue");
-/* harmony import */ var _components_api_v1_system_panel_layouts_master_Master__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/api/v1/system/panel/layouts/master/Master */ "./resources/js/components/api/v1/system/panel/layouts/master/Master.vue");
-/* harmony import */ var _components_api_v1_system_panel_layouts_header_Header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/api/v1/system/panel/layouts/header/Header */ "./resources/js/components/api/v1/system/panel/layouts/header/Header.vue");
-/* harmony import */ var _components_api_v1_system_panel_layouts_footer_Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/api/v1/system/panel/layouts/footer/Footer */ "./resources/js/components/api/v1/system/panel/layouts/footer/Footer.vue");
-/* harmony import */ var _components_api_v1_system_panel_auth_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/api/v1/system/panel/auth/Login */ "./resources/js/components/api/v1/system/panel/auth/Login.vue");
-/* harmony import */ var _components_api_v1_system_panel_dashboard_Overview__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/api/v1/system/panel/dashboard/Overview */ "./resources/js/components/api/v1/system/panel/dashboard/Overview.vue");
-/* harmony import */ var _components_api_v1_system_panel_support_contact_Contact__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/api/v1/system/panel/support/contact/Contact */ "./resources/js/components/api/v1/system/panel/support/contact/Contact.vue");
+/* harmony import */ var _vuex_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../vuex/store */ "./resources/js/vuex/store.js");
+/* harmony import */ var _components_frontend_layouts_master_MasterHome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/frontend/layouts/master/MasterHome */ "./resources/js/components/frontend/layouts/master/MasterHome.vue");
+/* harmony import */ var _components_frontend_contact_HomeContact__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/frontend/contact/HomeContact */ "./resources/js/components/frontend/contact/HomeContact.vue");
+/* harmony import */ var _components_api_v1_system_panel_layouts_master_Master__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/api/v1/system/panel/layouts/master/Master */ "./resources/js/components/api/v1/system/panel/layouts/master/Master.vue");
+/* harmony import */ var _components_api_v1_system_panel_layouts_header_Header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/api/v1/system/panel/layouts/header/Header */ "./resources/js/components/api/v1/system/panel/layouts/header/Header.vue");
+/* harmony import */ var _components_api_v1_system_panel_layouts_footer_Footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/api/v1/system/panel/layouts/footer/Footer */ "./resources/js/components/api/v1/system/panel/layouts/footer/Footer.vue");
+/* harmony import */ var _components_api_v1_system_panel_auth_Login__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/api/v1/system/panel/auth/Login */ "./resources/js/components/api/v1/system/panel/auth/Login.vue");
+/* harmony import */ var _components_api_v1_system_panel_dashboard_Overview__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/api/v1/system/panel/dashboard/Overview */ "./resources/js/components/api/v1/system/panel/dashboard/Overview.vue");
+/* harmony import */ var _components_api_v1_system_panel_support_contact_Contact__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/api/v1/system/panel/support/contact/Contact */ "./resources/js/components/api/v1/system/panel/support/contact/Contact.vue");
  // vue
 
  // vue-router
+
+ // store
 
 /**
  * * LAYOUTS (FRONTEND)
@@ -41508,10 +41511,10 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var routes = [{
   path: '/',
-  component: _components_frontend_layouts_master_MasterHome__WEBPACK_IMPORTED_MODULE_2__["default"],
+  component: _components_frontend_layouts_master_MasterHome__WEBPACK_IMPORTED_MODULE_3__["default"],
   children: [{
     path: '',
-    component: _components_frontend_contact_HomeContact__WEBPACK_IMPORTED_MODULE_3__["default"],
+    component: _components_frontend_contact_HomeContact__WEBPACK_IMPORTED_MODULE_4__["default"],
     name: 'home.index'
   } // HOME (CONTACT)
   ] // children
@@ -41519,14 +41522,14 @@ var routes = [{
 }, //
 {
   path: '/',
-  component: _components_api_v1_system_panel_layouts_master_Master__WEBPACK_IMPORTED_MODULE_4__["default"],
+  component: _components_api_v1_system_panel_layouts_master_Master__WEBPACK_IMPORTED_MODULE_5__["default"],
   children: [
   /**
    * * AUTH
   */
   {
     path: 'login',
-    component: _components_api_v1_system_panel_auth_Login__WEBPACK_IMPORTED_MODULE_7__["default"],
+    component: _components_api_v1_system_panel_auth_Login__WEBPACK_IMPORTED_MODULE_8__["default"],
     name: 'auth.login'
   }, // LOGIN
 
@@ -41536,7 +41539,7 @@ var routes = [{
   */
   {
     path: 'dashboard/overview',
-    component: _components_api_v1_system_panel_dashboard_Overview__WEBPACK_IMPORTED_MODULE_8__["default"],
+    component: _components_api_v1_system_panel_dashboard_Overview__WEBPACK_IMPORTED_MODULE_9__["default"],
     name: 'overview.index'
   }, // OVERVIEW (MODULE 1.1)
 
@@ -41546,7 +41549,7 @@ var routes = [{
   */
   {
     path: 'support/contact',
-    component: _components_api_v1_system_panel_support_contact_Contact__WEBPACK_IMPORTED_MODULE_9__["default"],
+    component: _components_api_v1_system_panel_support_contact_Contact__WEBPACK_IMPORTED_MODULE_10__["default"],
     name: 'contact.index'
   } // CONTACT (MODULE 2.1)
   ] // children
@@ -41557,7 +41560,18 @@ var routes = [{
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes // routes
 
-});
+}); // router
+
+router.beforeEach(function (to, from, next) {
+  if (to.meta.auth && !_vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.auth.authenticated) {
+    return router.push({
+      name: 'auth.login'
+    });
+  }
+
+  next();
+}); // beforeEach
+
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
