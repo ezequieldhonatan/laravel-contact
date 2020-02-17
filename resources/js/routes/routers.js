@@ -2,6 +2,19 @@ import Vue from 'vue' // vue
 import VueRouter from 'vue-router' // vue-router
 
 /**
+ * * LAYOUTS
+    * HOME
+ */
+import MasterHome from '../components/frontend/layouts/master/MasterHome' // HOME
+
+/**
+ * * HOME (CONTACT)
+ */
+import HomeContact from '../components/frontend/contact/HomeContact' // HOME (CONTACT)
+
+
+
+/**
  * * LAYOUTS (MODULE 0.0)
 */
 import MasterComponent from '../components/api/v1/system/panel/layouts/master/MasterComponent' // MASTER
@@ -21,6 +34,17 @@ import Contact from '../components/api/v1/system/panel/support/contact/Contact' 
 Vue.use(VueRouter)
 
 const routes = [
+
+    {
+        path: '/',
+        component: MasterHome,
+        children: [
+            
+            { path: '', component: HomeContact, name: 'home.index' }, // HOME (CONTACT)
+
+        ] // children
+
+    }, //
 
     {
         path: '/',
