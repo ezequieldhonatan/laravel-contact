@@ -21756,10 +21756,6 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-sm-6 col-xs-6 col-lg-6 col-md-6" }, [
         _c("div", { staticClass: "card" }, [
@@ -41280,7 +41276,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var routes = [{
   path: '/',
   component: _components_frontend_layouts_master_MasterHome__WEBPACK_IMPORTED_MODULE_3__["default"],
-  children: [{
+  children: [
+  /**
+   * * AUTH
+  */
+  {
+    path: 'login',
+    component: _components_backend_api_v1_system_panel_auth_Login__WEBPACK_IMPORTED_MODULE_6__["default"],
+    name: 'auth.login'
+  }, // LOGIN
+  {
     path: '',
     component: _components_frontend_support_contact_HomeContact__WEBPACK_IMPORTED_MODULE_4__["default"],
     name: 'home.index'
@@ -41291,16 +41296,10 @@ var routes = [{
 {
   path: '/',
   component: _components_backend_api_v1_system_panel_layouts_master_Master__WEBPACK_IMPORTED_MODULE_5__["default"],
+  meta: {
+    auth: true
+  },
   children: [
-  /**
-   * * AUTH
-  */
-  {
-    path: 'login',
-    component: _components_backend_api_v1_system_panel_auth_Login__WEBPACK_IMPORTED_MODULE_6__["default"],
-    name: 'auth.login'
-  }, // LOGIN
-
   /**
    * * DASHBOARD (MODULE 1.0)
       * OVERVIEW (MODULE 1.1)
@@ -41331,7 +41330,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 }); // router
 
 router.beforeEach(function (to, from, next) {
-  if (to.meta.auth && !_vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.auth.authenticated) {
+  if (to.meta.auth && !_vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.login.authenticated) {
+    return router.push({
+      name: 'auth.login'
+    });
+  } // if
+
+
+  if (to.matched.some(function (record) {
+    return record.meta.auth;
+  }) && !_vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.login.authenticated) {
     return router.push({
       name: 'auth.login'
     });
@@ -41360,7 +41368,7 @@ __webpack_require__.r(__webpack_exports__);
     return axios.post('/api/auth', params).then(function (response) {
       context.commit('AUTH_USER_OK', response.data.user);
     })["catch"](function (error) {
-      return reject(error.response);
+      return console.log(error);
     })["finally"](function () {
       return context.commit('PRELOADER');
     }, false);

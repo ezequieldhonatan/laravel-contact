@@ -1,7 +1,7 @@
 <template>
     <div>
         
-        <br> <br> <br> <br>
+        <br> <br>
 
         <div class="row justify-content-center">
 

@@ -7,7 +7,7 @@ export default {
                     .then( response => {
                         context.commit('AUTH_USER_OK', response.data.user)
                     })
-                    .catch( error => reject (error.response) )
+                    .catch( error => console.log(error) )
                     .finally( () => context.commit('PRELOADER'), false )
 
     }, // login

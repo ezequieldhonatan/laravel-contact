@@ -47,6 +47,11 @@ const routes = [
         path: '/',
         component: MasterHome,
         children: [
+
+            /**
+             * * AUTH
+            */
+           { path: 'login', component: AuthLogin, name: 'auth.login' }, // LOGIN
             
             { path: '', component: HomeContact, name: 'home.index' }, // HOME (CONTACT)
 
@@ -57,12 +62,8 @@ const routes = [
     {
         path: '/',
         component: Master,
+        meta: { auth: true },
         children: [
-            
-            /**
-             * * AUTH
-            */
-            { path: 'login', component: AuthLogin, name: 'auth.login' }, // LOGIN
 
             /**
              * * DASHBOARD (MODULE 1.0)
@@ -92,7 +93,13 @@ const router = new VueRouter
 
 router.beforeEach( (to, from, next) => {
 
-    if ( to.meta.auth && !store.state.auth.authenticated) {
+    if ( to.meta.auth && !store.state.login.authenticated) {
+
+        return router.push( { name: 'auth.login' } )
+
+    } // if
+
+    if ( to.matched.some(record => record.meta.auth) && !store.state.login.authenticated) {
 
         return router.push( { name: 'auth.login' } )
 
