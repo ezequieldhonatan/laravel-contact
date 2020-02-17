@@ -25,7 +25,7 @@ import Footer from '../components/api/v1/system/panel/layouts/footer/Footer' // 
 /**
  * * AUTH
 */
-import AuthLogin from '../components/api/v1/system/panel/layouts/auth/Login' // LOGIN
+import AuthLogin from '../components/api/v1/system/panel/auth/Login' // LOGIN
 
 /**
  * * DASHBOARD (MODULE 1.0)

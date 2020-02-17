@@ -103,7 +103,7 @@ export default {
         login () {
 
             this.$store.dispatch('login', this.formData)
-
+                        .then( () => this.$router.push( { name: 'overview.index' } ) )
         }, // login
 
     }, // methods

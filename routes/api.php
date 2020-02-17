@@ -15,7 +15,7 @@ Route::group
 (
     [
         'namespace'                 => 'Auth\Api',
-        'middleware'                => 'jwt.auth',
+        // 'middleware'                => 'jwt.auth',
     ],
     
     function () 

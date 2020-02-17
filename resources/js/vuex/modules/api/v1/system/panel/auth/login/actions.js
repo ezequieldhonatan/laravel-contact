@@ -1,10 +1,14 @@
 export default {
     
     login (context, params) {
+        context.commit('PRELOADER', true)
 
-        axios.post('/api/auth', params)
-                .then( response => console.log(response) )
-                .catch( error => console.log(error) )
+        return axios.post('/api/auth', params)
+                    .then( response => {
+                        context.commit('AUTH_USER_OK', response.data.user)
+                    })
+                    .catch( error => reject (error.response) )
+                    .finally( () => context.commit('PRELOADER'), false )
 
     }, // login
 
