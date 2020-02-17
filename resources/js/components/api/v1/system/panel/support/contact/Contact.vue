@@ -169,7 +169,7 @@ export default {
 
         totalContacts () {
 
-            return this.$store.state.contact.items.data.total
+            return this.$store.state.contact.items.data.length
 
         }, // totalContacts
 

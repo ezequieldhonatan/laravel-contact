@@ -31,7 +31,7 @@ class StoreUpdateFormRequest extends FormRequest
 
             'name'                              => 'required',
             'email'                             => 'required|email',
-            'cell_phone'                        => 'required',
+            'cell_phone'                        => '',
             'annex'                             => 'required|mimes:pdf,doc,docx,odt,txt|max:500',
             'message'                           => 'required'
 
@@ -42,7 +42,7 @@ class StoreUpdateFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'image.max' => 'O anexo pode ter no máximo 1MB',
+            'annex.max' => 'O anexo pode ter no máximo 500KB',
         ];
     }
 

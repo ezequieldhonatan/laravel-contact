@@ -178,5 +178,8 @@ return [
         'year'                  => 'ano',
         'email'                 => 'e-mail',
         'remember'              => 'lembrar-me',
+
+        'cell_phone'            => 'celular',
+        'annex'                 => 'anexo',
     ],
 ];

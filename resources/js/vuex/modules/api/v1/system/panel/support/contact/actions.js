@@ -4,6 +4,16 @@ import { URL_BASE } from '../../../../../../../../config/configs' // CONFIGS
 
 const RESOURCE = 'support/contact' // RESOURCE
 
+const CONFIGS = {
+
+    headers: {
+
+        'content-type': 'multipart/form-data',
+
+    }, // headers
+
+} // CONFIGS
+
 export default {
 
     // INDEX
@@ -16,5 +26,20 @@ export default {
                 .finally( () => context.commit('PRELOADER'), false )
 
     }, // contact
+
+    // STORE
+    store (context, formData) {
+        context.commit('PRELOADER', true)
+        
+        return new Promise( (resolve, reject) => {
+
+            axios.post( `${URL_BASE}${RESOURCE}`, formData, CONFIGS )
+                    .then( response => resolve() )
+                    .catch( error => reject (error.response) )
+                    .finally( () => context.commit('PRELOADER'), false )
+
+        }) // Promise
+
+    }, // store
     
 } // export default

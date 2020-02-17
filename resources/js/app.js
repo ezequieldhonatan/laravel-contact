@@ -32,3 +32,5 @@ const app = new Vue
         store, // store
     }
 );
+
+store.dispatch('contact')

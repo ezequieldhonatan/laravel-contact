@@ -41,6 +41,8 @@
 
             <preloader-component></preloader-component>
 
+            <vue-snotify></vue-snotify>
+
             <router-view></router-view>
 
         </div> <!-- #app -->
