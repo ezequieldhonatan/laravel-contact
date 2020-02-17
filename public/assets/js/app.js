@@ -40572,7 +40572,7 @@ var app = new Vue({
 _vuex_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('contact');
 _vuex_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('checkLogin').then(function () {
   return _routes_routers__WEBPACK_IMPORTED_MODULE_0__["default"].push({
-    name: 'overview.index'
+    name: _vuex_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.login.urlBack
   });
 });
 
@@ -41354,6 +41354,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 router.beforeEach(function (to, from, next) {
   if (to.meta.auth && !_vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.login.authenticated) {
+    _vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('CHANGE_URL_BACK', to.name);
     return router.push({
       name: 'auth.login'
     });
@@ -41363,6 +41364,7 @@ router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.auth;
   }) && !_vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.login.authenticated) {
+    _vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('CHANGE_URL_BACK', to.name);
     return router.push({
       name: 'auth.login'
     });
@@ -41402,6 +41404,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   // login
   checkLogin: function checkLogin(context) {
+    context.commit('PRELOADER', true);
     return new Promise(function (resolve, reject) {
       var token = localStorage.getItem(_config_configs__WEBPACK_IMPORTED_MODULE_0__["NAME_TOKEN"]);
       if (!token) return reject();
@@ -41410,7 +41413,9 @@ __webpack_require__.r(__webpack_exports__);
         resolve();
       })["catch"](function () {
         return reject();
-      });
+      })["finally"](function () {
+        return context.commit('PRELOADER');
+      }, false);
     }); // Promise
   } // checkLogin
 
@@ -41477,7 +41482,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   AUTH_USER_OK: function AUTH_USER_OK(state, user) {
     state.authenticated = true, state.me = user;
-  } // AUTH_USER_OK
+  },
+  // AUTH_USER_OK
+  CHANGE_URL_BACK: function CHANGE_URL_BACK(state, url) {
+    state.urlBack = url;
+  } // CHANGE_URL_BACK
 
 }); // export default
 
@@ -41495,7 +41504,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   me: {},
   // me
-  authenticated: false
+  authenticated: false,
+  urlBack: 'home.index'
 }); // export default
 
 /***/ }),

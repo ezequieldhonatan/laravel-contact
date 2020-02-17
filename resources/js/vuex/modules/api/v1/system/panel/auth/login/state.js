@@ -6,4 +6,6 @@ export default {
 
     authenticated: false,
 
+    urlBack: 'home.index'
+
 } // export default

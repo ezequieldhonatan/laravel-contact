@@ -95,11 +95,15 @@ router.beforeEach( (to, from, next) => {
 
     if ( to.meta.auth && !store.state.login.authenticated) {
 
+        store.commit('CHANGE_URL_BACK', to.name)
+
         return router.push( { name: 'auth.login' } )
 
     } // if
 
     if ( to.matched.some(record => record.meta.auth) && !store.state.login.authenticated) {
+
+        store.commit('CHANGE_URL_BACK', to.name)
 
         return router.push( { name: 'auth.login' } )
 

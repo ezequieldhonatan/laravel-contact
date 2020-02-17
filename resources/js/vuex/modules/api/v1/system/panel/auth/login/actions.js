@@ -17,6 +17,7 @@ export default {
     }, // login
 
     checkLogin (context) {
+        context.commit('PRELOADER', true)
 
         return new Promise( (resolve, reject) => {
 
@@ -32,6 +33,7 @@ export default {
                         resolve()
                     })
                     .catch( () => reject () )
+                    .finally( () => context.commit('PRELOADER'), false )
 
         }) // Promise
 
