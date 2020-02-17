@@ -1,23 +1,31 @@
 import Vue from 'vue' // vue
 import VueRouter from 'vue-router' // vue-router
 
+
+
 /**
- * * LAYOUTS
-    * HOME
+ * * LAYOUTS (FRONTEND)
  */
 import MasterHome from '../components/frontend/layouts/master/MasterHome' // HOME
 
 /**
- * * HOME (CONTACT)
+ * * HOME CONTACT (FRONTEND)
  */
 import HomeContact from '../components/frontend/contact/HomeContact' // HOME (CONTACT)
 
 
 
 /**
- * * LAYOUTS (MODULE 0.0)
+ * * LAYOUTS (BACKEND)
 */
-import MasterComponent from '../components/api/v1/system/panel/layouts/master/MasterComponent' // MASTER
+import Master from '../components/api/v1/system/panel/layouts/master/Master' // MASTER
+import Header from '../components/api/v1/system/panel/layouts/header/Header' // HEADER
+import Footer from '../components/api/v1/system/panel/layouts/footer/Footer' // FOOTER
+
+/**
+ * * AUTH
+*/
+import AuthLogin from '../components/api/v1/system/panel/layouts/auth/Login' // LOGIN
 
 /**
  * * DASHBOARD (MODULE 1.0)
@@ -48,9 +56,14 @@ const routes = [
 
     {
         path: '/',
-        component: MasterComponent,
+        component: Master,
         children: [
             
+            /**
+             * * AUTH
+            */
+            { path: 'login', component: AuthLogin, name: 'auth.login' }, // LOGIN
+
             /**
              * * DASHBOARD (MODULE 1.0)
                 * OVERVIEW (MODULE 1.1)

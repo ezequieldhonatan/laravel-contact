@@ -20,9 +20,9 @@
                         <li class="nav-item dropdown">
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <router-link class="nav-link" :to="{ name: 'auth.login' }">
                                     <strong>Área restrita</strong>
-                                </a>
+                                </router-link>
                             </li>
 
                         </li> <!-- nav-item dropdown -->

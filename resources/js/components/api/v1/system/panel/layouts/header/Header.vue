@@ -67,20 +67,12 @@
 
         </nav> <!-- navbar navbar-expand-md navbar-light bg-white shadow-sm -->
 
-        <br>
-
-        <div class="container">
-        
-            <router-view></router-view>
-
-        </div> <!-- container -->
-
     </div> <!-- -->
 </template> <!-- -->
 
 <script>
 export default {
-    
+
     computed: {
 
         totalContacts () {
