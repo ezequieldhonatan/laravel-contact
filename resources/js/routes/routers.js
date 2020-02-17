@@ -13,33 +13,31 @@ import MasterHome from '../components/frontend/layouts/master/MasterHome' // HOM
 /**
  * * HOME CONTACT (FRONTEND)
  */
-import HomeContact from '../components/frontend/contact/HomeContact' // HOME (CONTACT)
+import HomeContact from '../components/frontend/support/contact/HomeContact' // HOME (CONTACT)
 
 
 
 /**
  * * LAYOUTS (BACKEND)
 */
-import Master from '../components/api/v1/system/panel/layouts/master/Master' // MASTER
-import Header from '../components/api/v1/system/panel/layouts/header/Header' // HEADER
-import Footer from '../components/api/v1/system/panel/layouts/footer/Footer' // FOOTER
+import Master from '../components/backend/api/v1/system/panel/layouts/master/Master' // MASTER
 
 /**
  * * AUTH
 */
-import AuthLogin from '../components/api/v1/system/panel/auth/Login' // LOGIN
+import AuthLogin from '../components/backend/api/v1/system/panel/auth/Login' // LOGIN
 
 /**
  * * DASHBOARD (MODULE 1.0)
     * OVERVIEW (MODULE 1.1)
 */
-import Overview from '../components/api/v1/system/panel/dashboard/Overview' // OVERVIEW (MODULE 1.0)
+import Overview from '../components/backend/api/v1/system/panel/dashboard/Overview' // OVERVIEW (MODULE 1.0)
 
 /**
  * * SUPPORT (MODULE 2.0)
     * CONTACT (MODULE 2.1)
  */
-import Contact from '../components/api/v1/system/panel/support/contact/Contact' // CONTACT (MODULE 2.1)
+import Contact from '../components/backend/api/v1/system/panel/support/contact/Contact' // CONTACT (MODULE 2.1)
 
 Vue.use(VueRouter)
 
@@ -98,7 +96,7 @@ router.beforeEach( (to, from, next) => {
 
         return router.push( { name: 'auth.login' } )
 
-    }
+    } // if
 
     next()
 
