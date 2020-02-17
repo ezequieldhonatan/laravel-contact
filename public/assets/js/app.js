@@ -40570,6 +40570,11 @@ var app = new Vue({
 
 });
 _vuex_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('contact');
+_vuex_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('checkLogin').then(function () {
+  return _routes_routers__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+    name: 'overview.index'
+  });
+});
 
 /***/ }),
 
@@ -40577,8 +40582,13 @@ _vuex_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('contact');
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _config_configs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config/configs */ "./resources/js/config/configs.js");
+ // CONFIGS
 
 try {
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
@@ -40586,6 +40596,16 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+var tokenAccess = localStorage.getItem(_config_configs__WEBPACK_IMPORTED_MODULE_0__["NAME_TOKEN"]);
+if (tokenAccess) window.axios.defaults.headers.common['Authorization'] = "Bearer ".concat(tokenAccess);
 
 /***/ }),
 
@@ -41199,13 +41219,16 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************!*\
   !*** ./resources/js/config/configs.js ***!
   \****************************************/
-/*! exports provided: URL_BASE */
+/*! exports provided: URL_BASE, NAME_TOKEN */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "URL_BASE", function() { return URL_BASE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NAME_TOKEN", function() { return NAME_TOKEN; });
 var URL_BASE = '/api/v1/'; // URL_BASE
+
+var NAME_TOKEN = 'TOKEN_AUTH'; // NAME_TOKEN
 
 /***/ }),
 
@@ -41362,17 +41385,34 @@ router.beforeEach(function (to, from, next) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _config_configs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../../../../config/configs */ "./resources/js/config/configs.js");
+ // CONFIGS
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   login: function login(context, params) {
     context.commit('PRELOADER', true);
     return axios.post('/api/auth', params).then(function (response) {
       context.commit('AUTH_USER_OK', response.data.user);
+      localStorage.setItem(_config_configs__WEBPACK_IMPORTED_MODULE_0__["NAME_TOKEN"], response.data.token);
     })["catch"](function (error) {
       return console.log(error);
     })["finally"](function () {
       return context.commit('PRELOADER');
     }, false);
-  } // login
+  },
+  // login
+  checkLogin: function checkLogin(context) {
+    return new Promise(function (resolve, reject) {
+      var token = localStorage.getItem(_config_configs__WEBPACK_IMPORTED_MODULE_0__["NAME_TOKEN"]);
+      if (!token) return reject();
+      axios.get('/api/user').then(function (response) {
+        context.commit('AUTH_USER_OK', response.data.user);
+        resolve();
+      })["catch"](function () {
+        return reject();
+      });
+    }); // Promise
+  } // checkLogin
 
 }); // export default
 

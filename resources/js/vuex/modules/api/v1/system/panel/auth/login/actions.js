@@ -1,3 +1,5 @@
+import { NAME_TOKEN } from '../../../../../../../../config/configs'; // CONFIGS
+
 export default {
     
     login (context, params) {
@@ -6,10 +8,33 @@ export default {
         return axios.post('/api/auth', params)
                     .then( response => {
                         context.commit('AUTH_USER_OK', response.data.user)
+
+                        localStorage.setItem(NAME_TOKEN, response.data.token)
                     })
                     .catch( error => console.log(error) )
                     .finally( () => context.commit('PRELOADER'), false )
 
     }, // login
+
+    checkLogin (context) {
+
+        return new Promise( (resolve, reject) => {
+
+            const token = localStorage.getItem(NAME_TOKEN)
+
+            if ( !token )
+                return reject()
+
+            axios.get('/api/user')
+                    .then(response => {
+                        context.commit('AUTH_USER_OK', response.data.user)
+
+                        resolve()
+                    })
+                    .catch( () => reject () )
+
+        }) // Promise
+
+    }, // checkLogin
 
 } // export default

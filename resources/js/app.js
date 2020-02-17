@@ -34,3 +34,6 @@ const app = new Vue
 );
 
 store.dispatch('contact')
+
+store.dispatch('checkLogin')
+        .then( () => router.push( { name: 'overview.index' } ) )
