@@ -2,6 +2,11 @@ import Vue from 'vue' // vue
 import Vuex from 'vuex' // vuex
 
 /**
+ * * AUTH
+*/
+import login from './modules/api/v1/system/panel/auth/login/login' // LOGIN
+
+/**
  * * LAYOUTS
 */
 import preloader from './modules/api/v1/system/panel/layouts/preloader/preloader' // PRELOADER
@@ -22,6 +27,11 @@ const store = new Vuex.Store
 (
     {
         modules: {
+
+            /**
+             * * AUTH
+            */
+           login, // LOGIN
 
             /**
              * * LAYOUTS

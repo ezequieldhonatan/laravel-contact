@@ -2039,7 +2039,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({}); // export default
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      errors: {},
+      formData: {
+        email: '',
+        password: ''
+      } // formData
+
+    }; // return
+  },
+  // data
+  methods: {
+    login: function login() {
+      this.$store.dispatch('login', this.formData);
+    } // login
+
+  } // methods
+
+}); // export default
 
 /***/ }),
 
@@ -21813,38 +21832,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("br"),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-sm-6 col-xs-6 col-lg-6 col-md-6" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("\n                    Área restrita\n                ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-sm-12 col-xs-12 col-lg-12 col-md-12" },
-                  [
-                    _c("form", { staticClass: "form" }, [
+  return _c("div", [
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-sm-6 col-xs-6 col-lg-6 col-md-6" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("\n                    Área restrita\n                ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-sm-12 col-xs-12 col-lg-12 col-md-12" },
+                [
+                  _c(
+                    "form",
+                    {
+                      staticClass: "form",
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.login($event)
+                        }
+                      }
+                    },
+                    [
                       _c("div", { staticClass: "row" }, [
                         _c(
                           "div",
@@ -21859,9 +21880,36 @@ var staticRenderFns = [
                               ]),
                               _vm._v(" "),
                               _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.formData.email,
+                                    expression: "formData.email"
+                                  }
+                                ],
                                 staticClass: "form-control",
-                                attrs: { type: "email", id: "email" }
-                              })
+                                attrs: { type: "email", id: "email" },
+                                domProps: { value: _vm.formData.email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.formData,
+                                      "email",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.email
+                                ? _c("div", [
+                                    _vm._v(_vm._s(_vm.errors.email[0]))
+                                  ])
+                                : _vm._e()
                             ])
                           ]
                         ),
@@ -21879,42 +21927,73 @@ var staticRenderFns = [
                               ]),
                               _vm._v(" "),
                               _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.formData.password,
+                                    expression: "formData.password"
+                                  }
+                                ],
                                 staticClass: "form-control",
-                                attrs: { type: "password", id: "password" }
-                              })
+                                attrs: { type: "password", id: "password" },
+                                domProps: { value: _vm.formData.password },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.formData,
+                                      "password",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.password
+                                ? _c("div", [
+                                    _vm._v(_vm._s(_vm.errors.password[0]))
+                                  ])
+                                : _vm._e()
                             ])
                           ]
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-sm-12 col-xs-12 col-lg-12 col-md-12"
-                          },
-                          [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "button",
-                                { staticClass: "btn btn-outline-success" },
-                                [
-                                  _vm._v(
-                                    "\n                                                Acessar\n                                            "
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]
-                )
-              ])
+                      _vm._m(0)
+                    ]
+                  )
+                ]
+              )
             ])
           ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12 col-xs-12 col-lg-12 col-md-12" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-success",
+              attrs: { type: "submit" }
+            },
+            [
+              _vm._v(
+                "\n                                                Acessar\n                                            "
+              )
+            ]
+          )
         ])
       ])
     ])
@@ -41477,6 +41556,105 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 /***/ }),
 
+/***/ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/actions.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/vuex/modules/api/v1/system/panel/auth/login/actions.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  login: function login(context, params) {
+    axios.post('/api/auth', params).then(function (response) {
+      return console.log(response);
+    })["catch"](function (error) {
+      return console.log(error);
+    });
+  } // login
+
+}); // export default
+
+/***/ }),
+
+/***/ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/getters.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/vuex/modules/api/v1/system/panel/auth/login/getters.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({}); // export default
+
+/***/ }),
+
+/***/ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/login.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/vuex/modules/api/v1/system/panel/auth/login/login.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _login_state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../login/state */ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/state.js");
+/* harmony import */ var _login_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../login/actions */ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/actions.js");
+/* harmony import */ var _login_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../login/mutations */ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/mutations.js");
+/* harmony import */ var _login_getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login/getters */ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/getters.js");
+ // state
+
+ // actions
+
+ // mutations
+
+ // getters
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: _login_state__WEBPACK_IMPORTED_MODULE_0__["default"],
+  // state
+  actions: _login_actions__WEBPACK_IMPORTED_MODULE_1__["default"],
+  // actions
+  mutations: _login_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
+  // mutations
+  getters: _login_getters__WEBPACK_IMPORTED_MODULE_3__["default"] // getters
+
+}); // export default
+
+/***/ }),
+
+/***/ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/mutations.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/vuex/modules/api/v1/system/panel/auth/login/mutations.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({}); // export default
+
+/***/ }),
+
+/***/ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/state.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/vuex/modules/api/v1/system/panel/auth/login/state.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  me: {},
+  // me
+  authenticated: false
+}); // export default
+
+/***/ }),
+
 /***/ "./resources/js/vuex/modules/api/v1/system/panel/dashboard/overview.js":
 /*!*****************************************************************************!*\
   !*** ./resources/js/vuex/modules/api/v1/system/panel/dashboard/overview.js ***!
@@ -41710,12 +41888,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_api_v1_system_panel_layouts_preloader_preloader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/api/v1/system/panel/layouts/preloader/preloader */ "./resources/js/vuex/modules/api/v1/system/panel/layouts/preloader/preloader.js");
-/* harmony import */ var _modules_api_v1_system_panel_dashboard_overview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/api/v1/system/panel/dashboard/overview */ "./resources/js/vuex/modules/api/v1/system/panel/dashboard/overview.js");
-/* harmony import */ var _modules_api_v1_system_panel_support_contact_contact__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/api/v1/system/panel/support/contact/contact */ "./resources/js/vuex/modules/api/v1/system/panel/support/contact/contact.js");
+/* harmony import */ var _modules_api_v1_system_panel_auth_login_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/api/v1/system/panel/auth/login/login */ "./resources/js/vuex/modules/api/v1/system/panel/auth/login/login.js");
+/* harmony import */ var _modules_api_v1_system_panel_layouts_preloader_preloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/api/v1/system/panel/layouts/preloader/preloader */ "./resources/js/vuex/modules/api/v1/system/panel/layouts/preloader/preloader.js");
+/* harmony import */ var _modules_api_v1_system_panel_dashboard_overview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/api/v1/system/panel/dashboard/overview */ "./resources/js/vuex/modules/api/v1/system/panel/dashboard/overview.js");
+/* harmony import */ var _modules_api_v1_system_panel_support_contact_contact__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/api/v1/system/panel/support/contact/contact */ "./resources/js/vuex/modules/api/v1/system/panel/support/contact/contact.js");
  // vue
 
  // vuex
+
+/**
+ * * AUTH
+*/
+
+ // LOGIN
 
 /**
  * * LAYOUTS
@@ -41739,21 +41924,27 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     /**
+     * * AUTH
+    */
+    login: _modules_api_v1_system_panel_auth_login_login__WEBPACK_IMPORTED_MODULE_2__["default"],
+    // LOGIN
+
+    /**
      * * LAYOUTS
     */
-    preloader: _modules_api_v1_system_panel_layouts_preloader_preloader__WEBPACK_IMPORTED_MODULE_2__["default"],
+    preloader: _modules_api_v1_system_panel_layouts_preloader_preloader__WEBPACK_IMPORTED_MODULE_3__["default"],
     // PRELOADER
 
     /**
      * * DASHBOARD (MODULE 1.0)
     */
-    overview: _modules_api_v1_system_panel_dashboard_overview__WEBPACK_IMPORTED_MODULE_3__["default"],
+    overview: _modules_api_v1_system_panel_dashboard_overview__WEBPACK_IMPORTED_MODULE_4__["default"],
     // OVERVIEW (MODULE 1.1)
 
     /**
       * * REGISTRATION (MODULE 2.0)
      */
-    contact: _modules_api_v1_system_panel_support_contact_contact__WEBPACK_IMPORTED_MODULE_4__["default"] // CONTACT (MODULE 2.1)
+    contact: _modules_api_v1_system_panel_support_contact_contact__WEBPACK_IMPORTED_MODULE_5__["default"] // CONTACT (MODULE 2.1)
 
   } // modules
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         
-        <br> <br> <br> <br> <br>
+        <br> <br> <br> <br>
 
         <div class="row justify-content-center">
 
@@ -21,7 +21,7 @@
 
                                 <!-- LOGIN
                                 ================================================== -->
-                                <form class="form">
+                                <form class="form" @submit.prevent="login">
 
                                     <div class="row">
 
@@ -29,8 +29,8 @@
                                             
                                             <div class="form-group">
                                                 <label for="email">E-mail</label>
-                                                <input type="email" class="form-control" id="email">
-                                                <!-- <div v-if="errors.email">{{ errors.email[0] }}</div> -->
+                                                <input type="email" class="form-control" id="email" v-model="formData.email">
+                                                <div v-if="errors.email">{{ errors.email[0] }}</div>
                                             </div>
 
                                         </div> <!-- col-sm-12 col-xs-12 col-lg-12 col-md-12 -->
@@ -39,8 +39,8 @@
 
                                             <div class="form-group">
                                                 <label for="password">Senha</label>
-                                                <input type="password" class="form-control" id="password">
-                                                <!-- <div v-if="errors.password">{{ errors.password[0] }}</div> -->
+                                                <input type="password" class="form-control" id="password" v-model="formData.password">
+                                                <div v-if="errors.password">{{ errors.password[0] }}</div>
                                             </div>
 
                                         </div> <!-- col-sm-12 col-xs-12 col-lg-12 col-md-12 -->
@@ -52,7 +52,7 @@
                                         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
                                             
                                             <div class="form-group">
-                                                <button class="btn btn-outline-success">
+                                                <button class="btn btn-outline-success" type="submit">
                                                     Acessar
                                                 </button>
                                             </div>
@@ -80,6 +80,33 @@
 
 <script>
 export default {
+
+    data () {
+
+        return {
+
+            errors: {},
+
+            formData: {
+
+                email: '',
+                password: '',
+
+            }, // formData
+
+        } // return
+
+    }, // data
+
+    methods: {
+
+        login () {
+
+            this.$store.dispatch('login', this.formData)
+
+        }, // login
+
+    }, // methods
 
 } // export default
 </script>
