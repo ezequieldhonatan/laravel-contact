@@ -6,6 +6,35 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
+/**
+ * JWT Auth
+*/
+Route::group
+(
+    [
+        'namespace'                 => 'Auth\Api',
+        // 'middleware'                => 'jwt.auth',
+    ],
+    
+    function () 
+    {
+    
+        /**
+         * JWT Auth
+        */
+        Route::post('auth', 'IndexController@authenticate'); ## AUTH
+        Route::post('auth-refresh', 'IndexController@refreshToken'); ## AUTH REFRESH
+        Route::get('user', 'IndexController@getAuthenticatedUser'); ## USER
+        
+    
+    } // function
+
+); // Route
+
+
+
 /**
  * SYSTEM
 */
