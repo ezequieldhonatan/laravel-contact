@@ -13,8 +13,6 @@ class IndexController extends Controller
 {
     public function __construct(User $user)
     {
-        $this->user = $user;
-
         $this->middleware
         (
             'auth:api',
@@ -57,25 +55,12 @@ class IndexController extends Controller
 
     public function getAuthenticatedUser()
     {
-        try {
+        $response = $this->getUser();
+        
+        if ( $response[ 'status' ] != 200 )
+            return response()->json( [ $response[ 'response' ] ], $response[ 'status' ] );
 
-            if ( !$user = JWTAuth::parseToken()->authenticate() ) {
-                return response()->json( [ 'user_not_found' ], 404 );
-            }
-
-        } catch (TokenExpiredException $e) {
-
-            return response()->json( ['token_expired'], $e->getStatusCode() );
-
-        } catch (TokenInvalidException $e) {
-
-            return response()->json( ['token_invalid'], $e->getStatusCode() );
-
-        } catch (JWTException $e) {
-
-            return response()->json( ['token_absent'], $e->getStatusCode() );
-
-        }
+        $user = $response[ 'response' ];
 
         // the token is valid and we have found the user via the sub claim
         return response()->json( compact( 'user' ) );
@@ -101,19 +86,89 @@ class IndexController extends Controller
 
     } // refreshToken
 
-    public function register(StoreUpdateFormRequest $request)
+    public function register(StoreUpdateFormRequest $request, User $user)
     {
         // $data = $request->only( [ 'name', 'email', 'password' ] );
         $data = $request->all();
         
         $data['password'] = bcrypt( $data[ 'password' ] );
 
-        $this->user->create( $data );
+        $user->create( $data );
 
         $this->authenticate();
 
         return $this->authenticate();
 
     } // register
+
+    public function update(StoreUpdateFormRequest $request)
+    {
+        $response = $this->getUser();
+        
+        if ( $response[ 'status' ] != 200 )
+            return response()->json( [ $response[ 'response' ] ], $response[ 'status' ] );
+
+        $user = $response[ 'response' ];
+
+        $user->update( $request->all() );
+
+        return response()->json( compact( 'user' ) );
+
+    } // update
+
+    public function getUser()
+    {
+        try {
+
+            if ( !$user = JWTAuth::parseToken()->authenticate() ) {
+                // return response()->json( [ 'user_not_found' ], 404 );
+                return
+                [
+                    'response'       => 'user_not_found',
+                    'status'        => 404,
+
+                ]; // return
+            }
+
+        } catch (TokenExpiredException $e) {
+
+            // return response()->json( [ 'token_expired' ], $e->getStatusCode() );
+            return
+            [
+                'response'       => 'token_expired',
+                'status'        => $e->getStatusCode(),
+
+            ]; // return
+
+        } catch (TokenInvalidException $e) {
+
+            // return response()->json( [ 'token_invalid' ], $e->getStatusCode() );
+            return
+            [
+                'response'       => 'token_invalid',
+                'status'        => $e->getStatusCode(),
+
+            ]; // return
+
+        } catch (JWTException $e) {
+
+            // return response()->json( [ 'token_absent' ], $e->getStatusCode() );
+            return
+            [
+                'response'       => 'token_absent',
+                'status'        => $e->getStatusCode(),
+
+            ]; // return
+
+        } // try | catch
+
+        return
+        [
+            'response'       => $user,
+            'status'        => 200,
+
+        ]; // return
+
+    } // getUser
 
 } // IndexController

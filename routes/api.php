@@ -22,8 +22,12 @@ Route::group
         ================================================== */
         Route::post('auth', 'IndexController@authenticate'); ## AUTH
         Route::post('auth-refresh', 'IndexController@refreshToken'); ## AUTH REFRESH
-        Route::get('user', 'IndexController@getAuthenticatedUser'); ## USER
+
+        /* USER (JWT AUTH)
+        ================================================== */
         Route::post('register', 'IndexController@register'); ## REGISTER
+        Route::get('user', 'IndexController@getAuthenticatedUser'); ## USER
+        Route::put('update', 'IndexController@update'); ## UPDATE
         
     
     } // function
