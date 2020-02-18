@@ -88,7 +88,7 @@ export default {
     computed: {
 
         totalContacts () {
-
+            
             return this.$store.state.contact.items.data.length
 
         }, // totalContact
@@ -106,6 +106,8 @@ export default {
         logout () {
             
             this.$store.dispatch('logout')
+
+            this.$router.push( { name: 'auth.login' } )
 
         }, // logout
 

@@ -2176,6 +2176,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       this.$store.dispatch('logout');
+      this.$router.push({
+        name: 'auth.login'
+      });
     } // logout
 
   } // methods
