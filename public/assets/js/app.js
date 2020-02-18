@@ -2161,7 +2161,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     totalContacts: function totalContacts() {
@@ -2172,7 +2171,14 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.state.login.me;
     } // user
 
-  } // computed
+  },
+  // computed
+  methods: {
+    logout: function logout() {
+      this.$store.dispatch('logout');
+    } // logout
+
+  } // methods
 
 }); // export default
 
@@ -22115,27 +22121,38 @@ var render = function() {
                               _c("span", { staticClass: "caret" })
                             ]
                           )
-                        : _c(
-                            "router-link",
+                        : _c("a", { staticClass: "nav-link" }, [
+                            _vm._v(
+                              "\n                            Área restrita\n                        "
+                            )
+                          ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dropdown-menu dropdown-menu-right",
+                          attrs: { "aria-labelledby": "navbarDropdown" }
+                        },
+                        [
+                          _c(
+                            "a",
                             {
-                              staticClass: "nav-link dropdown-toggle",
-                              attrs: {
-                                id: "navbarDropdown",
-                                role: "button",
-                                "data-toggle": "dropdown",
-                                "aria-haspopup": "true",
-                                "aria-expanded": "false"
+                              staticClass: "dropdown-item",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.logout($event)
+                                }
                               }
                             },
                             [
                               _vm._v(
-                                "\n                            Área restrita\n                            "
-                              ),
-                              _c("span", { staticClass: "caret" })
+                                "\n                                Sair\n                            "
+                              )
                             ]
-                          ),
-                      _vm._v(" "),
-                      _vm._m(1)
+                          )
+                        ]
+                      )
                     ],
                     1
                   )
@@ -22172,25 +22189,6 @@ var staticRenderFns = [
         }
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "dropdown-menu dropdown-menu-right",
-        attrs: { "aria-labelledby": "navbarDropdown" }
-      },
-      [
-        _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-          _vm._v(
-            "\n                                Sair\n                            "
-          )
-        ])
-      ]
     )
   }
 ]
@@ -41461,7 +41459,12 @@ __webpack_require__.r(__webpack_exports__);
         return context.commit('PRELOADER');
       }, false);
     }); // Promise
-  } // checkLogin
+  },
+  // checkLogin
+  logout: function logout(context) {
+    localStorage.removeItem(_config_configs__WEBPACK_IMPORTED_MODULE_0__["NAME_TOKEN"]);
+    context.commit('AUTH_USER_LOGOUT');
+  } // logout
 
 }); // export default
 
@@ -41528,6 +41531,12 @@ __webpack_require__.r(__webpack_exports__);
     state.authenticated = true, state.me = user;
   },
   // AUTH_USER_OK
+  AUTH_USER_LOGOUT: function AUTH_USER_LOGOUT(state) {
+    state.me = {};
+    state.authenticated = false;
+    state.urlBack = 'home.index';
+  },
+  // AUTH_USER_LOGOUT
   CHANGE_URL_BACK: function CHANGE_URL_BACK(state, url) {
     state.urlBack = url;
   } // CHANGE_URL_BACK

@@ -39,4 +39,12 @@ export default {
 
     }, // checkLogin
 
+    logout (context) {
+
+        localStorage.removeItem(NAME_TOKEN)
+
+        context.commit('AUTH_USER_LOGOUT')
+        
+    }, // logout
+
 } // export default

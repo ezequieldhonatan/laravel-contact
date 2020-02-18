@@ -48,15 +48,14 @@
                                 {{ user.name }}
                                 <span class="caret"></span>
                             </router-link>
-
-                            <router-link id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-else>
+                            
+                            <a class="nav-link" v-else>
                                 Área restrita
-                                <span class="caret"></span>
-                            </router-link>
+                            </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" @click.prevent="logout">
                                     Sair
                                 </a>
 
@@ -101,6 +100,16 @@ export default {
         }, // user
 
     }, // computed
+
+    methods: {
+
+        logout () {
+            
+            this.$store.dispatch('logout')
+
+        }, // logout
+
+    }, // methods
 
 } // export default
 </script>
