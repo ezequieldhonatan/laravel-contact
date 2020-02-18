@@ -21,7 +21,7 @@ class IndexController extends Controller
         $this->middleware('auth:api')->except
         (
             [
-                'show'
+                'store'
             ]
 
         ); // except
