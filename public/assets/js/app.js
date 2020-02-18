@@ -2751,7 +2751,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.$snotify.success('Enviador com sucesso!', 'Sucesso');
 
         _this.$router.push({
-          name: 'overview.index'
+          name: 'auth.login'
         });
       })["catch"](function (errors) {
         _this.$snotify.error('Falha ao enviar!', 'Ops...');

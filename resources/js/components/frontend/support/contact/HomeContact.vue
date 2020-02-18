@@ -175,7 +175,7 @@ export default {
                         .then( () => {
                             this.$snotify.success('Enviador com sucesso!', 'Sucesso')
                             
-                            this.$router.push( { name: 'overview.index' } )
+                            this.$router.push( { name: 'auth.login' } )
                         })
                         .catch(errors => {
                             this.$snotify.error('Falha ao enviar!', 'Ops...')
