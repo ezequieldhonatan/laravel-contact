@@ -18,7 +18,6 @@ class IndexController extends Controller
     {
         $this->contact = $contact;
 
-        /*
         $this->middleware('auth:api')->except
         (
             [
@@ -26,7 +25,6 @@ class IndexController extends Controller
             ]
 
         ); // except
-        */
     }
 
     /**
