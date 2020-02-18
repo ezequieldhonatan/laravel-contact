@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
+use App\Http\Requests\Api\V1\System\Panel\Settings\User\StoreUpdateFormRequest;
 
 class IndexController extends Controller
 {
@@ -100,7 +101,7 @@ class IndexController extends Controller
 
     } // refreshToken
 
-    public function register(Request $request)
+    public function register(StoreUpdateFormRequest $request)
     {
         // $data = $request->only( [ 'name', 'email', 'password' ] );
         $data = $request->all();
