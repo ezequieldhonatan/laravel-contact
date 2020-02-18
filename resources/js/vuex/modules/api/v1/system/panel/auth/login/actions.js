@@ -7,9 +7,13 @@ export default {
 
         return axios.post('/api/auth', params)
                     .then( response => {
-                        context.commit('AUTH_USER_OK', response.data.user)
+                        const token = response.data.user
 
-                        localStorage.setItem(NAME_TOKEN, response.data.token)
+                        context.commit('AUTH_USER_OK', token)
+
+                        localStorage.setItem(NAME_TOKEN, token)
+
+                        window.axios.defaults.headers.common['Authorization'] = `Bearer ${ token }`;
                     })
                     .catch( error => console.log(error) )
                     .finally( () => context.commit('PRELOADER'), false )

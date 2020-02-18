@@ -17,6 +17,16 @@ class IndexController extends Controller
     public function __construct(Contact $contact)
     {
         $this->contact = $contact;
+
+        /*
+        $this->middleware('auth:api')->except
+        (
+            [
+                'show'
+            ]
+
+        ); // except
+        */
     }
 
     /**
@@ -75,7 +85,7 @@ class IndexController extends Controller
     {
         ## VERIFICA
         if ( !$contact = $this->contact->find( $id ) )
-            return response()->json( ['error' => 'Not_Found'], 404);
+            return response()->json( ['error' => 'Not_Found'], 404 );
 
         ## RETORNA
         return response()->json( $contact );
