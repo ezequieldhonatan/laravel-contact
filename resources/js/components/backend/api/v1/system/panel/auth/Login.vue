@@ -104,6 +104,9 @@ export default {
 
             this.$store.dispatch('login', this.formData)
                         .then( () => this.$router.push( { name: 'overview.index' } ) )
+                        .catch( () => {
+                            this.$snotify.error('Dados inválidos!', 'Ops...')
+                        })
         }, // login
 
     }, // methods

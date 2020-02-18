@@ -2008,6 +2008,8 @@ __webpack_require__.r(__webpack_exports__);
         return _this.$router.push({
           name: 'overview.index'
         });
+      })["catch"](function () {
+        _this.$snotify.error('Dados inválidos!', 'Ops...');
       });
     } // login
 
@@ -41443,8 +41445,6 @@ __webpack_require__.r(__webpack_exports__);
       context.commit('AUTH_USER_OK', token);
       localStorage.setItem(_config_configs__WEBPACK_IMPORTED_MODULE_0__["NAME_TOKEN"], token);
       window.axios.defaults.headers.common['Authorization'] = "Bearer ".concat(token);
-    })["catch"](function (error) {
-      return console.log(error);
     })["finally"](function () {
       return context.commit('PRELOADER');
     }, false);
