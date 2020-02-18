@@ -51,7 +51,7 @@ const routes = [
             /**
              * * AUTH
             */
-           { path: 'login', component: AuthLogin, name: 'auth.login' }, // LOGIN
+           { path: 'login', component: AuthLogin, name: 'auth.login', meta: { auth: false } }, // LOGIN
             
             { path: '', component: HomeContact, name: 'home.index' }, // HOME (CONTACT)
 
@@ -108,6 +108,12 @@ router.beforeEach( (to, from, next) => {
         return router.push( { name: 'auth.login' } )
 
     } // if
+
+    if ( to.meta.hasOwnProperty('login') && !to.meta.login && !store.state.login.authenticated) {
+
+        return router.push( { name: 'overview.index' } )
+
+    }
 
     next()
 

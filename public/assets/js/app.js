@@ -2157,11 +2157,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     totalContacts: function totalContacts() {
       return this.$store.state.contact.items.data.length;
-    } // totalContact
+    },
+    // totalContact
+    user: function user() {
+      return this.$store.state.login.me;
+    } // user
 
   } // computed
 
@@ -22066,7 +22075,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                E-mail ( " +
+                              "\n                                Contatos ( " +
                                 _vm._s(_vm.totalContacts) +
                                 " )\n                            "
                             )
@@ -22078,7 +22087,59 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item dropdown" },
+                    [
+                      _vm.user.name
+                        ? _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link dropdown-toggle",
+                              attrs: {
+                                id: "navbarDropdown",
+                                role: "button",
+                                "data-toggle": "dropdown",
+                                "aria-haspopup": "true",
+                                "aria-expanded": "false",
+                                to: { name: "overview.index" }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.user.name) +
+                                  "\n                            "
+                              ),
+                              _c("span", { staticClass: "caret" })
+                            ]
+                          )
+                        : _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link dropdown-toggle",
+                              attrs: {
+                                id: "navbarDropdown",
+                                role: "button",
+                                "data-toggle": "dropdown",
+                                "aria-haspopup": "true",
+                                "aria-expanded": "false"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Área restrita\n                            "
+                              ),
+                              _c("span", { staticClass: "caret" })
+                            ]
+                          ),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ],
+                    1
+                  )
+                ])
               ]
             )
           ],
@@ -22117,46 +22178,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-      _c("li", { staticClass: "nav-item dropdown" }, [
-        _c(
-          "a",
-          {
-            pre: true,
-            attrs: {
-              id: "navbarDropdown",
-              class: "nav-link dropdown-toggle",
-              href: "#",
-              role: "button",
-              "data-toggle": "dropdown",
-              "aria-haspopup": "true",
-              "aria-expanded": "false"
-            }
-          },
-          [
-            _vm._v(
-              "\n                            Ezequiel Dhonatan\n                            "
-            ),
-            _c("span", { pre: true, attrs: { class: "caret" } })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "dropdown-menu dropdown-menu-right",
-            attrs: { "aria-labelledby": "navbarDropdown" }
-          },
-          [
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _vm._v(
-                "\n                                Sair\n                            "
-              )
-            ])
-          ]
-        )
-      ])
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "dropdown-menu dropdown-menu-right",
+        attrs: { "aria-labelledby": "navbarDropdown" }
+      },
+      [
+        _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+          _vm._v(
+            "\n                                Sair\n                            "
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -41306,7 +41341,10 @@ var routes = [{
   {
     path: 'login',
     component: _components_backend_api_v1_system_panel_auth_Login__WEBPACK_IMPORTED_MODULE_6__["default"],
-    name: 'auth.login'
+    name: 'auth.login',
+    meta: {
+      auth: false
+    }
   }, // LOGIN
   {
     path: '',
@@ -41370,6 +41408,12 @@ router.beforeEach(function (to, from, next) {
     });
   } // if
 
+
+  if (to.meta.hasOwnProperty('login') && !to.meta.login && !_vuex_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.login.authenticated) {
+    return router.push({
+      name: 'overview.index'
+    });
+  }
 
   next();
 }); // beforeEach

@@ -32,7 +32,7 @@
 
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                                 <router-link class="dropdown-item" :to="{ name: 'contact.index' }">
-                                    E-mail ( {{ totalContacts }} )
+                                    Contatos ( {{ totalContacts }} )
                                 </router-link>
                             </div>
 
@@ -44,10 +44,15 @@
 
                         <li class="nav-item dropdown">
 
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Ezequiel Dhonatan
+                            <router-link id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" :to="{ name: 'overview.index' }" v-if="user.name">
+                                {{ user.name }}
                                 <span class="caret"></span>
-                            </a>
+                            </router-link>
+
+                            <router-link id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-else>
+                                Área restrita
+                                <span class="caret"></span>
+                            </router-link>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
@@ -88,6 +93,12 @@ export default {
             return this.$store.state.contact.items.data.length
 
         }, // totalContact
+
+        user () {
+
+            return this.$store.state.login.me
+
+        }, // user
 
     }, // computed
 
