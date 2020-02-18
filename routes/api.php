@@ -8,9 +8,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-/**
- * JWT Auth
-*/
 Route::group
 (
     [
@@ -20,13 +17,13 @@ Route::group
     
     function () 
     {
-    
-        /**
-         * JWT Auth
-        */
+
+        /* JWT AUTH
+        ================================================== */
         Route::post('auth', 'IndexController@authenticate'); ## AUTH
         Route::post('auth-refresh', 'IndexController@refreshToken'); ## AUTH REFRESH
         Route::get('user', 'IndexController@getAuthenticatedUser'); ## USER
+        Route::post('register', 'IndexController@register'); ## REGISTER
         
     
     } // function
