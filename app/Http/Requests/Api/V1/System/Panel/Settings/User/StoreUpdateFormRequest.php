@@ -23,14 +23,12 @@ class StoreUpdateFormRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->segment(2);
-
         return [
             
             /* DADOS DO USUÁRIO
             ================================================== */
             'name'                              => 'required|min:3|max:100',
-            'email'                             => "required|email|max:150|unique:users,email,{$id},id",
+            'email'                             => "required|email|max:150|unique:users,email,{$this->id},id",
             'password'                          => 'required|min:8|max:15',
     
         ]; // return
