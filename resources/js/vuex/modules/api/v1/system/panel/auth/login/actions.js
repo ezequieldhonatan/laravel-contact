@@ -2,10 +2,11 @@ import { NAME_TOKEN } from '../../../../../../../../config/configs'; // CONFIGS
 
 export default {
     
+    // INDEX
     login (context, params) {
         context.commit('PRELOADER', true)
 
-        return axios.post('/api/auth', params)
+        return axios.post('/api/authenticate', params)
                     .then( response => {
                         const token = response.data.user
 
@@ -19,6 +20,7 @@ export default {
 
     }, // login
 
+    // CHECK LOGIN
     checkLogin (context) {
         context.commit('PRELOADER', true)
 
@@ -42,6 +44,7 @@ export default {
 
     }, // checkLogin
 
+    // LOGOUT
     logout (context) {
 
         localStorage.removeItem(NAME_TOKEN)

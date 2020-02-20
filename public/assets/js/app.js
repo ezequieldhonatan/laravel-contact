@@ -41438,9 +41438,10 @@ __webpack_require__.r(__webpack_exports__);
  // CONFIGS
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  // INDEX
   login: function login(context, params) {
     context.commit('PRELOADER', true);
-    return axios.post('/api/auth', params).then(function (response) {
+    return axios.post('/api/authenticate', params).then(function (response) {
       var token = response.data.user;
       context.commit('AUTH_USER_OK', token);
       localStorage.setItem(_config_configs__WEBPACK_IMPORTED_MODULE_0__["NAME_TOKEN"], token);
@@ -41450,6 +41451,7 @@ __webpack_require__.r(__webpack_exports__);
     }, false);
   },
   // login
+  // CHECK LOGIN
   checkLogin: function checkLogin(context) {
     context.commit('PRELOADER', true);
     return new Promise(function (resolve, reject) {
@@ -41466,6 +41468,7 @@ __webpack_require__.r(__webpack_exports__);
     }); // Promise
   },
   // checkLogin
+  // LOGOUT
   logout: function logout(context) {
     localStorage.removeItem(_config_configs__WEBPACK_IMPORTED_MODULE_0__["NAME_TOKEN"]);
     context.commit('AUTH_USER_LOGOUT');
