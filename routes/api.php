@@ -8,26 +8,38 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
+/**
+ * JWT AUTH
+*/
 Route::group
 (
     [
-        'namespace'                 => 'Auth\Api',
-        // 'middleware'                => 'jwt.auth',
+        'namespace'                 => 'Api\v1\System\Panel', // namespace
+        // 'middleware'                => 'jwt.auth', // middleware
     ],
     
     function () 
     {
 
-        /* JWT AUTH
-        ================================================== */
-        Route::post('auth', 'IndexController@authenticate'); ## AUTH
-        Route::post('auth-refresh', 'IndexController@refreshToken'); ## AUTH REFRESH
+        /**
+         * JWT AUTH
+        */
 
-        /* USER (JWT AUTH)
+        /* TOKEN
         ================================================== */
-        Route::post('register', 'IndexController@register'); ## REGISTER
-        Route::get('user', 'IndexController@getAuthenticatedUser'); ## USER
-        Route::put('update', 'IndexController@update'); ## UPDATE
+        Route::post('authenticate', 'Auth\JWT\JWTController@authenticate'); ## AUTHENTICATE
+        Route::post('update-token', 'Auth\JWT\JWTController@updateToken'); ## UPDATE TOKEN
+
+
+        /**
+         * SETTINGS
+        */
+              
+        /* USER
+        ================================================== */
+        Route::get('user', 'Auth\JWT\JWTController@getAuthenticatedUser'); ## USER (RECOVER)
+        Route::post('user', 'Settings\User\IndexController@store'); ## USER (STORE)
+        Route::put('user', 'Settings\User\IndexController@update'); ## USER (UPDATE)
         
     
     } // function
@@ -48,6 +60,7 @@ Route::group
     
     function () 
     {
+
         /**
          * SUPPORT (MODULE 2.0)
         */
